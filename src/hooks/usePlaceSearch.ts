@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchPlaces } from "../api/placesApi";
 import type { Place, PlaceSearchParams } from "../types/place";
 import { sortPlaces } from "../utils/sortPlaces";
+import { tokenizeQuery } from "../utils/tokenize";
 
 /**
  * usePlaceSearch 입력 파라미터.
@@ -76,7 +77,8 @@ export function usePlaceSearch(params: UsePlaceSearchParams): UsePlaceSearchResu
 
   const results = useMemo<Place[]>(() => {
     const all = data ?? [];
-    const normalizedQuery = query.trim().toLowerCase();
+    // 공백으로 나뉜 키워드 토큰. 모든 토큰이 포함돼야 매칭(AND 검색).
+    const tokens = tokenizeQuery(query).map((t) => t.toLowerCase());
 
     const filtered = all.filter((place) => {
       // 카테고리 필터: "all" 이면 미적용.
@@ -87,8 +89,8 @@ export function usePlaceSearch(params: UsePlaceSearchParams): UsePlaceSearchResu
       if (favoritesOnly && !favoriteSet.has(place.id)) {
         return false;
       }
-      // 검색어 필터: 빈 쿼리면 미적용.
-      if (normalizedQuery !== "") {
+      // 검색어 필터: 빈 쿼리면 미적용. 토큰이 여럿이면 모두 포함돼야 한다(AND).
+      if (tokens.length > 0) {
         const haystack = [
           place.name,
           place.description,
@@ -96,7 +98,7 @@ export function usePlaceSearch(params: UsePlaceSearchParams): UsePlaceSearchResu
         ]
           .join(" ")
           .toLowerCase();
-        if (!haystack.includes(normalizedQuery)) {
+        if (!tokens.every((token) => haystack.includes(token))) {
           return false;
         }
       }
