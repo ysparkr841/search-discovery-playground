@@ -105,7 +105,8 @@ export function usePlaceSearch(params: UsePlaceSearchParams): UsePlaceSearchResu
       return true;
     });
 
-    return sortPlaces(filtered, sort);
+    // 정확도순일 때 query로 관련도를 계산하도록 검색어를 함께 넘긴다.
+    return sortPlaces(filtered, sort, query);
   }, [data, query, category, favoritesOnly, favoriteSet, sort]);
 
   return {
