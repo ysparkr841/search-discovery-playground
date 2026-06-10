@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/*
+ * Tailwind v4 엔트리 CSS.
+ *
+ * 디자인 토큰(브랜드 컬러: 오렌지 포인트 / 화이트 배경 / 연한 그레이 카드 등)의
+ * 세부 확장은 ui-builder 가 아래 @theme 블록에 추가한다. 여기서는 부팅 가능한
+ * 기본 골격만 둔다.
+ *
+ * 아래 @theme 블록이 ui-builder 가 정의한 당근+토스 스타일 디자인 토큰이다.
+ */
+
+@theme {
+  /* ── 브랜드 포인트: 당근 오렌지 단계 ──────────────────────────── */
+  --color-primary: #ff6f0f;        /* 기본 포인트 */
+  --color-primary-hover: #e85f00;  /* hover/active 시 약간 진하게 */
+  --color-primary-soft: #fff2e8;   /* 선택 칩/소프트 배경 틴트 */
+  --color-primary-fg: #ffffff;     /* primary 위 텍스트 */
+
+  /* ── 표면(배경/카드/보더) ──────────────────────────────────── */
+  --color-surface: #ffffff;        /* 페이지/카드 기본 배경(화이트) */
+  --color-surface-muted: #f7f8fa;  /* 연그레이 카드/섹션 배경 */
+  --color-surface-sunken: #eef0f3; /* 더 눌린 그레이(인풋 등) */
+  --color-border: #ebedf0;         /* 옅은 보더 */
+  --color-border-strong: #d7dbe0;  /* 조금 진한 보더(포커스 외) */
+
+  /* ── 텍스트 위계 ──────────────────────────────────────────── */
+  --color-ink: #1a1d20;            /* 제목/주요 텍스트 */
+  --color-ink-secondary: #4e5560;  /* 본문 보조 */
+  --color-ink-muted: #8b919a;      /* 캡션/메타 */
+
+  /* ── 상태/강조 ────────────────────────────────────────────── */
+  --color-star: #ffb020;           /* 평점 별(★) */
+
+  /* ── 라운드(토스풍 둥근 느낌) ──────────────────────────────── */
+  --radius-card: 1rem;             /* 16px, rounded-xl 급 카드 */
+  --radius-card-lg: 1.25rem;       /* 20px, 큰 카드 */
+  --radius-chip: 999px;            /* 칩/필 버튼 */
+
+  /* ── 섀도우(소프트) ───────────────────────────────────────── */
+  --shadow-card: 0 1px 2px rgba(16, 24, 40, 0.04), 0 1px 3px rgba(16, 24, 40, 0.06);
+  --shadow-card-hover: 0 4px 12px rgba(16, 24, 40, 0.08), 0 2px 4px rgba(16, 24, 40, 0.06);
+
+  /* ── 타이포 위계 (font-size + line-height) ────────────────── */
+  --text-title: 1.25rem;           /* 20px 섹션/카드 제목 */
+  --text-title--line-height: 1.4;
+  --text-body: 0.9375rem;          /* 15px 본문 */
+  --text-body--line-height: 1.55;
+  --text-caption: 0.8125rem;       /* 13px 캡션/메타 */
+  --text-caption--line-height: 1.4;
+}
