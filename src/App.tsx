@@ -31,6 +31,35 @@ import {
 /** 최근 검색어 최대 보관 개수. */
 const MAX_RECENT = 5;
 
+/** 상태 표시용 작은 스피너(디바운스 대기/로딩 피드백). 과하지 않게 14px. */
+function Spinner() {
+  return (
+    <svg
+      className="animate-spin text-ink-muted"
+      width={14}
+      height={14}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="9"
+        stroke="currentColor"
+        strokeWidth="3"
+        opacity="0.25"
+      />
+      <path
+        d="M21 12a9 9 0 0 0-9-9"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 /** 검색 결과 스켈레톤(로딩) 카드 1장. */
 function SkeletonCard() {
   return (
@@ -128,12 +157,18 @@ function App() {
     setRecent([]);
   }, [setRecent]);
 
-  // 결과 카운트 표시 문구.
-  const countLabel = useMemo(() => {
-    if (isLoading || isError) return null;
+  // 디바운스 대기 여부: 입력값과 확정 검색어가 다르면 아직 반영 전(검색 중).
+  const isDebouncing = rawQuery.trim() !== debouncedQuery.trim();
+
+  // 결과 영역 상태 문구. role="status" 라이브 영역으로 스크린리더에 알린다.
+  // 에러는 별도 alert 영역이 안내하므로 여기서는 제외한다.
+  const statusLabel = useMemo(() => {
+    if (isError) return null;
+    if (isDebouncing) return "검색 중…";
+    if (isLoading) return "불러오는 중…";
     const scope = category === "all" ? "" : ` · ${CATEGORY_LABELS[category]}`;
     return `${total}곳${scope}`;
-  }, [isLoading, isError, total, category]);
+  }, [isError, isDebouncing, isLoading, total, category]);
 
   return (
     <div className="min-h-screen bg-surface-muted">
@@ -185,8 +220,13 @@ function App() {
         <section aria-label="검색 결과" className="flex flex-col gap-3">
           {/* 결과 카운트 + 에러 시연 토글 */}
           <div className="flex items-center justify-between">
-            <span className="text-caption text-ink-muted">
-              {countLabel ?? " "}
+            <span
+              role="status"
+              aria-live="polite"
+              className="flex items-center gap-1.5 text-caption text-ink-muted"
+            >
+              {(isDebouncing || isLoading) && <Spinner />}
+              {statusLabel ?? " "}
             </span>
             <label className="flex cursor-pointer items-center gap-1.5 text-caption text-ink-muted">
               <input
