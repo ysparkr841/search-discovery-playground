@@ -223,6 +223,4 @@ useDebounce, useLocalStorage 등을 제네릭 기반으로 구현하여 다양�
 
 ## 링크
 
-- **Live Demo** — _배포 후 추가 예정_
-- **Portfolio** — _추가 예정_
 - **GitHub** — https://github.com/ysparkr841
