@@ -174,13 +174,14 @@ npm install
 npm run dev
 ```
 
-| Script            | Description |
-| ----------------- | ----------- |
-| npm run dev       | 개발 서버       |
-| npm run build     | 프로덕션 빌드     |
-| npm run preview   | 빌드 결과 확인    |
-| npm run lint      | ESLint      |
-| npm run typecheck | 타입 검사       |
+| Script | 설명 |
+| --- | --- |
+| `npm run dev` | 개발 서버 |
+| `npm run build` | 프로덕션 빌드 |
+| `npm run preview` | 빌드 결과 확인 |
+| `npm run lint` | ESLint 검사 |
+| `npm run typecheck` | 타입 검사 |
+| `npm run test` | 단위 테스트 (Vitest) |
 
 ---
 
