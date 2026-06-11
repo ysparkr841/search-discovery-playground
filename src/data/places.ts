@@ -1,10 +1,10 @@
 import type { Place } from "../types/place";
 
 /**
- * 시드 데이터 — 현실적인 한국 장소 28개.
+ * 시드 데이터 — 현실적인 한국 장소 50개.
  *
  * 설계 의도:
- * - 5개 카테고리에 고르게 분포 (restaurant 6 / cafe 6 / park 5 / hospital 5 / life 6).
+ * - 5개 카테고리에 고르게 분포 (restaurant 11 / cafe 11 / park 9 / hospital 9 / life 10).
  * - "서울"·"강남"·"판교"·"성수" 등 **부분 일치 하이라이팅을 시연할 공통 토큰**을
  *   여러 항목 name 에 의도적으로 포함 (예: 서울역/서울숲/서울시청).
  * - distance / rating / updatedAt 을 서로 다르게 분포시켜 4종 정렬이 눈에 띄게 동작.
@@ -72,6 +72,56 @@ export const PLACES: Place[] = [
     updatedAt: "2026-05-22T17:45:00+09:00",
     tags: ["한식", "닭갈비", "회식"],
   },
+  {
+    id: 29,
+    name: "서울 곰탕 본점",
+    category: "restaurant",
+    description: "24시간 끓이는 진한 한우 곰탕",
+    distance: 410,
+    rating: 4.4,
+    updatedAt: "2026-05-07T07:30:00+09:00",
+    tags: ["한식", "곰탕", "24시간"],
+  },
+  {
+    id: 30,
+    name: "강남 양꼬치 거리",
+    category: "restaurant",
+    description: "양꼬치와 칭따오가 맛있는 중식당",
+    distance: 1750,
+    rating: 4.2,
+    updatedAt: "2026-04-28T20:20:00+09:00",
+    tags: ["중식", "양꼬치", "회식"],
+  },
+  {
+    id: 31,
+    name: "홍대 떡볶이 마녀",
+    category: "restaurant",
+    description: "즉석 로제 떡볶이로 줄 서는 분식집",
+    distance: 5600,
+    rating: 4.0,
+    updatedAt: "2026-06-03T16:50:00+09:00",
+    tags: ["분식", "떡볶이", "야식"],
+  },
+  {
+    id: 32,
+    name: "여의도 한정식 담",
+    category: "restaurant",
+    description: "코스로 즐기는 정갈한 한정식",
+    distance: 6900,
+    rating: 4.7,
+    updatedAt: "2026-03-25T12:15:00+09:00",
+    tags: ["한식", "한정식", "접대"],
+  },
+  {
+    id: 33,
+    name: "성수 수제버거 그릴",
+    category: "restaurant",
+    description: "패티가 두툼한 수제 버거 맛집",
+    distance: 4250,
+    rating: 4.5,
+    updatedAt: "2026-05-31T13:20:00+09:00",
+    tags: ["양식", "버거", "수제"],
+  },
 
   // ── 카페 (cafe) ──────────────────────────────────────────────────
   {
@@ -134,6 +184,56 @@ export const PLACES: Place[] = [
     updatedAt: "2026-06-01T07:55:00+09:00",
     tags: ["에스프레소", "테이크아웃", "직장인"],
   },
+  {
+    id: 34,
+    name: "서울역 그랜드카페",
+    category: "cafe",
+    description: "기차 시간 기다리기 좋은 넓은 카페",
+    distance: 230,
+    rating: 4.1,
+    updatedAt: "2026-06-10T08:10:00+09:00",
+    tags: ["프랜차이즈", "넓은", "회의"],
+  },
+  {
+    id: 35,
+    name: "강남 루프탑 카페",
+    category: "cafe",
+    description: "야경이 예쁜 루프탑 디저트 카페",
+    distance: 700,
+    rating: 4.4,
+    updatedAt: "2026-05-16T18:40:00+09:00",
+    tags: ["루프탑", "디저트", "데이트"],
+  },
+  {
+    id: 36,
+    name: "잠실 호수뷰 카페",
+    category: "cafe",
+    description: "석촌호수가 보이는 통창 카페",
+    distance: 10200,
+    rating: 4.6,
+    updatedAt: "2026-04-21T15:25:00+09:00",
+    tags: ["뷰맛집", "디저트", "사진"],
+  },
+  {
+    id: 37,
+    name: "합정 감성카페",
+    category: "cafe",
+    description: "잔잔한 음악이 흐르는 조용한 카페",
+    distance: 5300,
+    rating: 4.3,
+    updatedAt: "2026-05-29T14:05:00+09:00",
+    tags: ["감성", "조용한", "콘센트"],
+  },
+  {
+    id: 38,
+    name: "판교 테크노밸리 카페",
+    category: "cafe",
+    description: "노트북 작업하기 좋은 직장인 카페",
+    distance: 9000,
+    rating: 4.2,
+    updatedAt: "2026-06-09T09:35:00+09:00",
+    tags: ["직장인", "테이크아웃", "와이파이"],
+  },
 
   // ── 공원 (park) ──────────────────────────────────────────────────
   {
@@ -186,6 +286,46 @@ export const PLACES: Place[] = [
     updatedAt: "2026-05-26T13:05:00+09:00",
     tags: ["산책", "조용한", "벤치"],
   },
+  {
+    id: 39,
+    name: "서울대공원",
+    category: "park",
+    description: "동물원과 함께 즐기는 가족 나들이 공원",
+    distance: 14500,
+    rating: 4.5,
+    updatedAt: "2026-03-28T11:00:00+09:00",
+    tags: ["동물원", "가족", "나들이"],
+  },
+  {
+    id: 40,
+    name: "보라매공원",
+    category: "park",
+    description: "운동 시설이 잘 갖춰진 동네 공원",
+    distance: 5400,
+    rating: 4.3,
+    updatedAt: "2026-05-02T08:20:00+09:00",
+    tags: ["산책", "운동", "반려견"],
+  },
+  {
+    id: 41,
+    name: "강남 양재시민의숲",
+    category: "park",
+    description: "가을 단풍길이 아름다운 도심 숲",
+    distance: 4800,
+    rating: 4.4,
+    updatedAt: "2026-04-18T16:45:00+09:00",
+    tags: ["산책", "단풍", "피크닉"],
+  },
+  {
+    id: 42,
+    name: "뚝섬한강공원",
+    category: "park",
+    description: "성수에서 가까운 한강변 캠핑·자전거 명소",
+    distance: 4000,
+    rating: 4.5,
+    updatedAt: "2026-06-05T17:50:00+09:00",
+    tags: ["한강", "캠핑", "자전거"],
+  },
 
   // ── 병원 (hospital) ──────────────────────────────────────────────
   {
@@ -237,6 +377,46 @@ export const PLACES: Place[] = [
     rating: 4.6,
     updatedAt: "2026-04-23T11:40:00+09:00",
     tags: ["치과", "임플란트", "예약"],
+  },
+  {
+    id: 43,
+    name: "서울성모병원",
+    category: "hospital",
+    description: "진료 과목이 다양한 대형 종합병원",
+    distance: 3100,
+    rating: 4.3,
+    updatedAt: "2026-04-08T08:40:00+09:00",
+    tags: ["종합병원", "응급실", "주차"],
+  },
+  {
+    id: 44,
+    name: "강남 미소정형외과",
+    category: "hospital",
+    description: "도수치료와 물리치료로 소문난 정형외과",
+    distance: 850,
+    rating: 4.5,
+    updatedAt: "2026-05-25T10:30:00+09:00",
+    tags: ["정형외과", "물리치료", "예약"],
+  },
+  {
+    id: 45,
+    name: "판교 우리아이소아과",
+    category: "hospital",
+    description: "예방접종 예약이 편리한 소아청소년과",
+    distance: 8700,
+    rating: 4.4,
+    updatedAt: "2026-06-02T09:10:00+09:00",
+    tags: ["소아과", "예방접종", "주차"],
+  },
+  {
+    id: 46,
+    name: "성수 맑은안과의원",
+    category: "hospital",
+    description: "라식·노안 검진이 가능한 안과",
+    distance: 4600,
+    rating: 4.2,
+    updatedAt: "2026-03-19T11:55:00+09:00",
+    tags: ["안과", "라식", "검진"],
   },
 
   // ── 생활편의 (life) ──────────────────────────────────────────────
@@ -299,6 +479,46 @@ export const PLACES: Place[] = [
     rating: 4.2,
     updatedAt: "2026-06-09T11:10:00+09:00",
     tags: ["생활용품", "저가", "다양함"],
+  },
+  {
+    id: 47,
+    name: "홈플러스 강남점",
+    category: "life",
+    description: "늦게까지 여는 대형 할인 마트",
+    distance: 2400,
+    rating: 4.1,
+    updatedAt: "2026-05-14T20:30:00+09:00",
+    tags: ["마트", "장보기", "주차"],
+  },
+  {
+    id: 48,
+    name: "서울 남대문시장",
+    category: "life",
+    description: "먹거리와 쇼핑이 가득한 전통시장",
+    distance: 1100,
+    rating: 4.3,
+    updatedAt: "2026-04-12T12:00:00+09:00",
+    tags: ["시장", "먹거리", "쇼핑"],
+  },
+  {
+    id: 49,
+    name: "판교역 지하상가",
+    category: "life",
+    description: "지하철과 바로 연결되는 편리한 상가",
+    distance: 8800,
+    rating: 4.0,
+    updatedAt: "2026-05-27T18:15:00+09:00",
+    tags: ["쇼핑", "지하상가", "접근성"],
+  },
+  {
+    id: 50,
+    name: "올리브영 성수점",
+    category: "life",
+    description: "화장품·생활용품을 파는 드럭스토어",
+    distance: 4150,
+    rating: 4.4,
+    updatedAt: "2026-06-08T15:40:00+09:00",
+    tags: ["화장품", "드럭스토어", "편의"],
   },
 ];
 
