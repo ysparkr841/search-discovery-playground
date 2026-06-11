@@ -157,6 +157,20 @@ function App() {
     setRecent([]);
   }, [setRecent]);
 
+  // ── 필터 초기화: 검색어·카테고리·정렬·즐겨찾기만보기를 기본값으로 ─
+  const hasActiveFilters =
+    rawQuery.trim() !== "" ||
+    category !== "all" ||
+    sort !== DEFAULT_SORT ||
+    favoritesOnly;
+
+  const handleResetFilters = useCallback(() => {
+    setRawQuery("");
+    setCategory("all");
+    setSort(DEFAULT_SORT);
+    setFavoritesOnly(false);
+  }, []);
+
   // 디바운스 대기 여부: 입력값과 확정 검색어가 다르면 아직 반영 전(검색 중).
   const isDebouncing = rawQuery.trim() !== debouncedQuery.trim();
 
@@ -218,16 +232,47 @@ function App() {
 
         {/* 결과 영역: loading / error / success 3상태 분기 */}
         <section aria-label="검색 결과" className="flex flex-col gap-3">
-          {/* 결과 카운트 + 에러 시연 토글 */}
-          <div className="flex items-center justify-between">
-            <span
-              role="status"
-              aria-live="polite"
-              className="flex items-center gap-1.5 text-caption text-ink-muted"
-            >
+          {/* 결과 카운트 + 초기화 + 에러 시연 토글 */}
+          <div className="flex items-center justify-between gap-2">
+            <div className="flex min-w-0 items-center gap-2">
+              <span
+                role="status"
+                aria-live="polite"
+                className="flex items-center gap-1.5 text-caption text-ink-muted"
+              >
               {(isDebouncing || isLoading) && <Spinner />}
               {statusLabel ?? " "}
-            </span>
+              </span>
+              {hasActiveFilters && (
+                <button
+                  type="button"
+                  onClick={handleResetFilters}
+                  aria-label="검색어와 필터 초기화"
+                  className={[
+                    "inline-flex h-7 shrink-0 items-center gap-1 rounded-chip border px-2.5 text-caption",
+                    "border-border bg-surface text-ink-secondary transition-colors",
+                    "hover:border-border-strong hover:text-ink",
+                    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+                  ].join(" ")}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    width={13}
+                    height={13}
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M3 12a9 9 0 1 0 3-6.7L3 8" />
+                    <path d="M3 3v5h5" />
+                  </svg>
+                  초기화
+                </button>
+              )}
+            </div>
             <label className="flex cursor-pointer items-center gap-1.5 text-caption text-ink-muted">
               <input
                 type="checkbox"
