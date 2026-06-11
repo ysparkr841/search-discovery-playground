@@ -7,12 +7,20 @@
 export interface EmptyStateProps {
   /** 안내 문구 override(선택). 미지정 시 기본 문구 사용. */
   message?: string;
+  /** 초기화 액션(선택). 지정하면 안내 아래에 초기화 버튼을 노출한다. */
+  onReset?: () => void;
+  /** 초기화 버튼 라벨(선택). 기본 "검색·필터 초기화". */
+  resetLabel?: string;
 }
 
 const DEFAULT_MESSAGE =
   "조건에 맞는 결과가 없습니다. 검색어를 줄이거나 필터를 변경해보세요.";
 
-export default function EmptyState({ message = DEFAULT_MESSAGE }: EmptyStateProps) {
+export default function EmptyState({
+  message = DEFAULT_MESSAGE,
+  onReset,
+  resetLabel = "검색·필터 초기화",
+}: EmptyStateProps) {
   return (
     <div
       role="status"
@@ -37,6 +45,19 @@ export default function EmptyState({ message = DEFAULT_MESSAGE }: EmptyStateProp
         </svg>
       </div>
       <p className="max-w-xs text-body text-ink-secondary">{message}</p>
+      {onReset && (
+        <button
+          type="button"
+          onClick={onReset}
+          className={[
+            "mt-1 h-10 rounded-chip bg-primary px-5 text-body font-medium text-primary-fg",
+            "transition-colors hover:bg-primary-hover",
+            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/50",
+          ].join(" ")}
+        >
+          {resetLabel}
+        </button>
+      )}
     </div>
   );
 }

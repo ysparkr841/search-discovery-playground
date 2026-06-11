@@ -328,6 +328,7 @@ function App() {
                   ? undefined
                   : "표시할 장소가 없습니다."
               }
+              onReset={hasActiveFilters ? handleResetFilters : undefined}
             />
           ) : (
             <ul className="grid grid-cols-1 gap-3">
